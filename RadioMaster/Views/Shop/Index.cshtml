@@ -1,0 +1,19 @@
+﻿@model RadioMaster.Models.Item
+@{
+    ViewData["Title"] = "Каталог";
+}
+
+<h1>Каталог</h1>
+<p>Click <a asp-action="Cart">here</a> to see your cart.</p>
+
+<form asp-action="ItemAddToCart" method="post">
+    <p>
+        <label>choose item?</label>
+        <select asp-for="Name">
+            <option value="">Choose an option</option>
+            <option value="1">TestItem1</option>
+            <option value="2">TestItem2</option>
+        </select>
+    </p>
+    <button type="submit">Submit RSVP</button>
+</form>
