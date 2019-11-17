@@ -1,19 +1,46 @@
-﻿@model RadioMaster.Models.Item
+﻿@model IEnumerable<RadioMaster.Models.Item>
+
 @{
     ViewData["Title"] = "Каталог";
 }
 
-<h1>Каталог</h1>
-<p>Click <a asp-action="Cart">here</a> to see your cart.</p>
-
-<form asp-action="ItemAddToCart" method="post">
-    <p>
-        <label>choose item?</label>
-        <select asp-for="Name">
-            <option value="">Choose an option</option>
-            <option value="1">TestItem1</option>
-            <option value="2">TestItem2</option>
-        </select>
-    </p>
-    <button type="submit">Submit RSVP</button>
-</form>
+<div class="row">
+    <div class="col"></div>
+    <div class="col-10">
+        <h1>Каталог</h1>
+        <p>Click <a asp-action="Cart">here</a> to see your cart.</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="btn-group-vertical d-flex">
+            @foreach (ItemType categories in ViewBag.ItemType)
+            {
+                <button class="btn btn-outline-primary btn-block">@categories.Name</button>
+            }
+        </div>
+    </div>
+    <div class="col-10">
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Item Type</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (RadioMaster.Models.Item x in Model)
+                {
+                    <tr>
+                        <td>@x.Name</td>
+                        <td>@x.Price</td>
+                        <td>@x.ItemType.Name</td>
+                        <td><a asp-controller="Shop" asp-action="AddItemToCart" asp-route-id=@x.Id>Добавить в корзину</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
