@@ -24,6 +24,8 @@ namespace RadioMaster.Controllers
                 .FirstOrDefault(x => x.Id == id);
 
             CartRep.AddItem(item);
+
+            ViewBag.ItemType = CatalogRep.Categories;
             return View("Index", CatalogRep.Сatalog);
         }
 
@@ -34,6 +36,8 @@ namespace RadioMaster.Controllers
                 .FirstOrDefault(x => x.Id == id);
 
             CartRep.RemoveLine(item);
+
+            ViewBag.ItemType = CatalogRep.Categories;
             return View("Cart", CartRep.Cart);
         }
     }
