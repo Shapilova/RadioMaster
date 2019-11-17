@@ -8046,11 +8046,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Other\\ASP NET Core\\RadioMaster\\RadioMaster\\RadioMaster.csproj",
+      "projectUniqueName": "F:\\Other\\git\\RadioMaster\\RadioMaster\\RadioMaster.csproj",
       "projectName": "RadioMaster",
-      "projectPath": "F:\\Other\\ASP NET Core\\RadioMaster\\RadioMaster\\RadioMaster.csproj",
+      "projectPath": "F:\\Other\\git\\RadioMaster\\RadioMaster\\RadioMaster.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "F:\\Other\\ASP NET Core\\RadioMaster\\RadioMaster\\obj\\",
+      "outputPath": "F:\\Other\\git\\RadioMaster\\RadioMaster\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

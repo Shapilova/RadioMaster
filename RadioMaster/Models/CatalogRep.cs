@@ -33,18 +33,6 @@ namespace RadioMaster.Models
             catalog.Add(item);
         }
 
-        public static void RemoveItem(Item removeItem)
-        {
-            Item item = catalog
-                .Where(x => x.Id == removeItem.Id)
-                .FirstOrDefault();
-
-            if (item != null)
-            {
-                catalog.Remove(item);
-            }
-        }
-
         public static void RemoveItemType(ItemType removeItemType)
         {
             ItemType itemType = categories
@@ -54,6 +42,18 @@ namespace RadioMaster.Models
             if (itemType != null)
             {
                 categories.Remove(itemType);
+            }
+        }
+
+        public static void RemoveItem(Item removeItem)
+        {
+            Item item = catalog
+                .Where(x => x.Id == removeItem.Id)
+                .FirstOrDefault();
+
+            if (item != null)
+            {
+                catalog.Remove(item);
             }
         }
     }

@@ -11,6 +11,8 @@ namespace RadioMaster
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            DataInitialization.initializeCatalog();
         }
 
         public IConfiguration Configuration { get; }
