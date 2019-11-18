@@ -14,9 +14,10 @@
 <div class="row">
     <div class="col">
         <div class="btn-group-vertical d-flex">
-            @foreach (ItemType categories in ViewBag.ItemType)
+            <button class="btn btn-outline-primary btn-block"><a asp-controller="Shop" asp-action="Index">Все категории</a></button>
+            @foreach (ItemType category in ViewBag.ItemType)
             {
-                <button class="btn btn-outline-primary btn-block">@categories.Name</button>
+                <button class="addToCart btn btn-outline-primary btn-block"><a asp-controller="Shop" asp-action="FilterCatalog" asp-route-idItemType=@category.Id>@category.Name</a></button>
             }
         </div>
     </div>
@@ -31,16 +32,31 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (RadioMaster.Models.Item x in Model)
+                @foreach (RadioMaster.Models.Item item in Model)
                 {
                     <tr>
-                        <td>@x.Name</td>
-                        <td>@x.Price</td>
-                        <td>@x.ItemType.Name</td>
-                        <td><a asp-controller="Shop" asp-action="AddItemToCart" asp-route-id=@x.Id>Добавить в корзину</a></td>
+                        <td>@item.Name</td>
+                        <td>@item.Price</td>
+                        <td>@item.ItemType.Name</td>
+                        <td><a asp-controller="Shop" asp-action="AddItemToCart" asp-route-idItem=@item.Id>Добавить в корзину</a></td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
 </div>
+<script>
+$(".addToCart").click(function(e){
+
+    e.preventDefault();
+    $.ajax({
+
+        url:$(this).attr("href"), // comma here instead of semicolon
+        success: function(){
+        alert("Value Added");  // or any other indication if you want to show
+        }
+
+    });
+
+});
+</script>

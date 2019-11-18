@@ -18,6 +18,10 @@ namespace RadioMaster
             CatalogRep.AddItem(new Item(2, "testItem2", 200, 2, itemType2));
             CatalogRep.AddItem(new Item(3, "3testItem3", 300, 2, itemType2));
             CatalogRep.AddItem(new Item(4, "4testItem4", 400, 3, itemType3));
+            CatalogRep.AddItem(new Item(5, "testItem5", 300, 1, itemType1));
+            CatalogRep.AddItem(new Item(6, "testItem6", 100, 1, itemType1));
+            CatalogRep.AddItem(new Item(7, "3testItem7", 200, 2, itemType2));
+            CatalogRep.AddItem(new Item(8, "4testItem8", 400, 3, itemType3));
         }
     }
 }

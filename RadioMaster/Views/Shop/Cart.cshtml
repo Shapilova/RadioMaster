@@ -36,7 +36,7 @@
                         document.write(price * count)
                     </script>
                 </td>
-                <td><a asp-controller="Shop" asp-action="RemoveLineFromCart" asp-route-id=@x.Item.Id>Убрать из корзины</a></td>
+                <td><a asp-controller="Shop" asp-action="RemoveLineFromCart" asp-route-idItem=@x.Item.Id>Убрать из корзины</a></td>
             </tr>
         }
     </tbody>
