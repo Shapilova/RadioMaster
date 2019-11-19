@@ -7,6 +7,8 @@ namespace RadioMaster.Controllers
 {
     public class ShopController : Controller
     {
+        public static int IdFilter { get; set; } //Код фильтрации каталога
+
         public IActionResult Index()
         {
             ViewBag.ItemType = CatalogRep.Categories;
@@ -27,7 +29,7 @@ namespace RadioMaster.Controllers
             CartRep.AddItem(item);
 
             ViewBag.ItemType = CatalogRep.Categories;
-            return View("Index", CatalogRep.Сatalog);
+            return ShowCatalog();
         }
 
         [HttpGet]
@@ -43,12 +45,25 @@ namespace RadioMaster.Controllers
         }
 
         [HttpGet]
-        public ViewResult FilterCatalog(int id)
+        public ViewResult FilterCatalog(int idItemType)
         {
-            IEnumerable<Item> items = CatalogRep.Сatalog.Where(x => x.ItemTypeId == id);
+            IdFilter = idItemType;
 
             ViewBag.ItemType = CatalogRep.Categories;
-            return View("Index", items);
+            return ShowCatalog();
+        }
+
+        private ViewResult ShowCatalog()
+        {
+            if (IdFilter == 0)
+            {
+                return View("Index", CatalogRep.Сatalog);
+            }
+            else
+            {
+                IEnumerable<Item> items = CatalogRep.Сatalog.Where(x => x.ItemTypeId == IdFilter);
+                return View("Index", items);
+            }
         }
     }
 }
