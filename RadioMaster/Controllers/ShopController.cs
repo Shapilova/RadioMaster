@@ -19,12 +19,15 @@ namespace RadioMaster.Controllers
         }
 
         [HttpGet]
-        public void AddItemToCart(int idItem)
+        public ViewResult AddItemToCart(int idItem)
         {
             Item item = CatalogRep.Сatalog
                 .FirstOrDefault(x => x.Id == idItem);
 
             CartRep.AddItem(item);
+
+            ViewBag.ItemType = CatalogRep.Categories;
+            return View("Index", CatalogRep.Сatalog);
         }
 
         [HttpGet]
