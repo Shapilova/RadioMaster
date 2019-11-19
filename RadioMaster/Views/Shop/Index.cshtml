@@ -7,11 +7,6 @@
 <div class="row">
     <div class="col"></div>
     <div class="col-10">
-        <h2>@if (ViewBag.url != null)
-        {
-            @ViewBag.url
-        }
-        </h2>
         <h1>Каталог</h1>
         <p>Click <a asp-action="Cart">here</a> to see your cart.</p>
     </div>
@@ -22,7 +17,7 @@
             <button class="btn btn-outline-primary btn-block"><a asp-controller="Shop" asp-action="Index">Все категории</a></button>
             @foreach (ItemType category in ViewBag.ItemType)
             {
-                <button class="addToCart btn btn-outline-primary btn-block"><a asp-controller="Shop" asp-action="FilterCatalog" asp-route-idItemType=@category.Id>@category.Name</a></button>
+                <button class="btn btn-outline-primary btn-block"><a asp-controller="Shop" asp-action="FilterCatalog" asp-route-idItemType=@category.Id>@category.Name</a></button>
             }
         </div>
     </div>
@@ -50,18 +45,3 @@
         </table>
     </div>
 </div>
-<script>
-$(".addToCart").click(function(e){
-
-    e.preventDefault();
-    $.ajax({
-
-        url:$(this).attr("href"), // comma here instead of semicolon
-        success: function(){
-        alert("Value Added");  // or any other indication if you want to show
-        }
-
-    });
-
-});
-</script>
