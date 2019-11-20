@@ -5,13 +5,16 @@ using System.Linq;
 
 namespace RadioMaster.Controllers
 {
+    //Контроллер каталога
     public class ShopController : Controller
     {
+        //Отобразить карзину
         public IActionResult Index()
         {
             return View(CartRep.Cart);
         }
 
+        //Убрать позицию из корзины
         [HttpGet]
         public ViewResult RemoveLineFromCart(int idItem)
         {

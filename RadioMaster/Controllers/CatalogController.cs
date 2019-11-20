@@ -5,16 +5,19 @@ using System.Linq;
 
 namespace RadioMaster.Controllers
 {
+    //Контроллер каталога
     public class CatalogController : Controller
     {
         public static int IdFilter { get; set; } //Код фильтрации каталога по категориям
 
+        //Отображение каталога
         public IActionResult Index()
         {
             ViewBag.ItemType = CatalogRep.Categories;
             return View(CatalogRep.Сatalog);
         }
 
+        //Добавить товар в корзину
         [HttpGet]
         public ViewResult AddItemToCart(int idItem)
         {
@@ -27,6 +30,7 @@ namespace RadioMaster.Controllers
             return ChooseItemsToShowCatalog();
         }
 
+        //Фильтровать товары по категориям
         [HttpGet]
         public ViewResult FilterCatalog(int idItemType)
         {
@@ -36,6 +40,7 @@ namespace RadioMaster.Controllers
             return ChooseItemsToShowCatalog();
         }
 
+        //Выбрать товары для отображения в каталоге
         private ViewResult ChooseItemsToShowCatalog()
         {
             ViewBag.ItemType = CatalogRep.Categories;
