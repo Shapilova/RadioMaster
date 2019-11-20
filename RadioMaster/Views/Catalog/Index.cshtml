@@ -1,0 +1,47 @@
+﻿@model IEnumerable<RadioMaster.Models.Item>
+
+@{
+    ViewData["Title"] = "Каталог";
+}
+
+<div class="row">
+    <div class="col"></div>
+    <div class="col-10">
+        <h1>Каталог</h1>
+        <p>Click <a asp-controller="Cart" asp-action="Index">here</a> to see your cart.</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="btn-group-vertical d-flex">
+            <button class="btn btn-outline-primary btn-block"><a asp-controller="Catalog" asp-action="Index">Все категории</a></button>
+            @foreach (ItemType category in ViewBag.ItemType)
+            {
+                <button class="btn btn-outline-primary btn-block"><a asp-controller="Catalog" asp-action="FilterCatalog" asp-route-idItemType=@category.Id>@category.Name</a></button>
+            }
+        </div>
+    </div>
+    <div class="col-10">
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Item Type</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (RadioMaster.Models.Item item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Price</td>
+                        <td>@item.ItemType.Name</td>
+                        <td><a asp-controller="Catalog" asp-action="AddItemToCart" asp-route-idItem=@item.Id>Добавить в корзину</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
