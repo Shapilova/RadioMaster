@@ -8,19 +8,22 @@ namespace RadioMaster.Controllers
     //Контроллер каталога
     public class CatalogController : Controller
     {
-        public static int IdFilter { get; set; } //Код фильтрации каталога по категориям
+        private int idFilter { get; set; } //Код фильтрации каталога по категориям
 
         //Отображение каталога
         public IActionResult Index()
         {
-            return idFilter;
+            idFilter = 0;
+
+            ViewBag.ItemType = CatalogRep.Categories;
+            return View(CatalogRep.Сatalog);
         }
 
         //Добавить товар в корзину
         [HttpGet]
         public ViewResult AddItemToCart(int idItem)
         {
-            SetIdFilter(0);
+            idFilter = 0;
 
             ViewBag.ItemType = CatalogRep.Categories;
             return ChooseItemsToShowCatalog();
@@ -30,7 +33,7 @@ namespace RadioMaster.Controllers
         [HttpGet]
         public ViewResult FilterCatalog(int idItemType)
         {
-            SetIdFilter(idItemType);
+            idFilter = idItemType;
 
             ViewBag.ItemType = CatalogRep.Categories;
             return ChooseItemsToShowCatalog();
@@ -40,7 +43,7 @@ namespace RadioMaster.Controllers
         private ViewResult ChooseItemsToShowCatalog()
         {
             ViewBag.ItemType = CatalogRep.Categories;
-            if (IdFilter == 0)
+            if (idFilter == 0)
             {
                 return View("Index", CatalogRep.Сatalog);
             }
