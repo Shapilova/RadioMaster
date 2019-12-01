@@ -3,19 +3,21 @@ using System.Linq;
 
 namespace RadioMaster.Models
 {
+    //Репозиторий каталога
     public class CatalogRep
     {
-        private static List<Item> catalog = new List<Item>();
-        private static List<ItemType> categories = new List<ItemType>();
+        private static List<Item> catalog = new List<Item>(); //Каталог
+        private static List<ItemType> categories = new List<ItemType>(); //Категории
 
-        public static IEnumerable<Item> Сatalog
+        public static IEnumerable<Item> Сatalog //Перечисление товаров каталога
         {
             get
             {
                 return catalog;
             }
         }
-        public static IEnumerable<ItemType> Categories
+
+        public static IEnumerable<ItemType> Categories //Перечисление названий категорий
         {
             get
             {
@@ -23,16 +25,19 @@ namespace RadioMaster.Models
             }
         }
 
+        //Добавить тип товара
         public static void AddItemType(ItemType itemType)
         {
             categories.Add(itemType);
         }
 
+        //Добавить товар
         public static void AddItem(Item item)
         {
             catalog.Add(item);
         }
 
+        //Удалить тип товара
         public static void RemoveItemType(ItemType removeItemType)
         {
             ItemType itemType = categories
@@ -45,6 +50,7 @@ namespace RadioMaster.Models
             }
         }
 
+        //Удалить товар
         public static void RemoveItem(Item removeItem)
         {
             Item item = catalog

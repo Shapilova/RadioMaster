@@ -1,5 +1,6 @@
 ﻿namespace RadioMaster.Models
 {
+    //Товар
     public class Item
     {
         public int Id { get; set; }             //Ключ товара
@@ -8,6 +9,7 @@
         public int ItemTypeId { get; set; }     //Ключ типа товара
         public ItemType ItemType { get; set; }  //Тип товара
 
+        //Конструктор товара
         public Item(int id, string name, int price, int itemTypeId, ItemType itemType)
         {
             Id = id;
