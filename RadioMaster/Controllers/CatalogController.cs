@@ -8,12 +8,25 @@ namespace RadioMaster.Controllers
     //Контроллер каталога
     public class CatalogController : Controller
     {
-        private int idFilter { get; set; } //Код фильтрации каталога по категориям
+        private int IdFilter //Код фильтрации каталога по категориям
+        {
+            get { return IdFilter; }
+
+            set
+            {
+                if (value < 0 || value > CatalogRep.Categories.Count())
+                {
+                    value = 0;
+                }
+
+                IdFilter = value;
+            }
+        }
 
         //Отображение каталога
         public IActionResult Index()
         {
-            idFilter = 0;
+            IdFilter = 0;
 
             ViewBag.ItemType = CatalogRep.Categories;
             return View(CatalogRep.Сatalog);
@@ -23,7 +36,7 @@ namespace RadioMaster.Controllers
         [HttpGet]
         public ViewResult AddItemToCart(int idItem)
         {
-            idFilter = 0;
+            IdFilter = 0;
 
             ViewBag.ItemType = CatalogRep.Categories;
             return ChooseItemsToShowCatalog();
@@ -33,7 +46,7 @@ namespace RadioMaster.Controllers
         [HttpGet]
         public ViewResult FilterCatalog(int idItemType)
         {
-            idFilter = idItemType;
+            IdFilter = idItemType;
 
             ViewBag.ItemType = CatalogRep.Categories;
             return ChooseItemsToShowCatalog();
@@ -43,13 +56,13 @@ namespace RadioMaster.Controllers
         private ViewResult ChooseItemsToShowCatalog()
         {
             ViewBag.ItemType = CatalogRep.Categories;
-            if (idFilter == 0)
+            if (IdFilter == 0)
             {
                 return View("Index", CatalogRep.Сatalog);
             }
             else
             {
-                IEnumerable<Item> items = CatalogRep.Сatalog.Where(x => x.ItemTypeId == GetIdFilter());
+                IEnumerable<Item> items = CatalogRep.Сatalog.Where(x => x.ItemTypeId == IdFilter);
                 return View("Index", items);
             }
         }
